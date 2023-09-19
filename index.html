@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Minha To-do List</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+
+    <link
+      rel="shortcut icon"
+      href="./img/todoListFavicon.png"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <!--Logo do To-do List-->
+      <div class="center">
+        <img src="./img/todoList.png" alt="to-do list" />
+      </div>
+      <!-- Carregamento (Loading) -->
+      <div id="loading"><img src="./img/loading.gif" alt="carregando" /></div>
+      <!-- Destinado para usuários nao atenticados-->
+      <div id="auth" class="center">
+        <!-- Formulario de Identificação-->
+        <form id="authForm">
+          <h3 id="authFormTitle">Acesse a sua conta para continuar</h3>
+          <label for="email">Email:</label>
+          <input type="email" placeholder="email@exemplo.com" id="email" />
+          <label for="password">Senha:</label>
+          <input type="password" placeholder="*****" id="password" />
+          <button type="submit" id="submitAuthForm">Acessar</button>
+        </form>
+
+        <!--Redefinição de Senha-->
+        <p id="passwordReset">
+          Esqueceu a senha?
+          <button onclick="sendPasswordResetEmail()" class="alternative">
+            Redefina a Senha
+          </button>
+        </p>
+
+        <!--Formulario para Cadastro de Novas Contas-->
+        <p id="register">
+          Não possui uma conta?
+          <button onclick="toggleToRegister()" class="alternative">
+            Cadastrar uma nova conta
+          </button>
+        </p>
+        <!--Alternar Formulário para Acesso de Contas já Existentes-->
+        <p id="access" class="startHidden">
+          Já possui uma conta?
+          <button onclick="toggleToAccess()" class="alternative">
+            Acesse sua conta
+          </button>
+        </p>
+        <p>
+          Ou acesse usando: <br />
+          <img onclick="signInWithGoogle()"
+            src="./img/google.png"
+            alt="Google Login"
+          />
+        </p>
+      </div>
+      <!-- Destinado para usuários autenticados -->
+      <div id="userContent" class="startHidden">
+        <hr />
+        <div id="userInfo" class="center">
+          <img id="userImg" src="" alt="" />
+          <p id="userName"></p>
+          <p id="userEmail"></p>
+          <p id="emailVerified"></p>
+          <div id="sendEmailVerificationDiv">
+            <button class="alternative" onclick="sendEmailVerification()">
+              Verificar Email
+            </button>
+          </div>
+          <button class="alternative" onclick="signOut()">Sair</button>
+        </div>
+      </div>
+    </div>
+    <!-- Scripts e Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.8.1/firebase-auth.js"></script>
+
+    <script type="module" src="./js/firebase.js"></script>
+    <script src="./js/utils.js"></script>
+    <script src="./js/auth.js"></script>
+  </body>
+</html>
