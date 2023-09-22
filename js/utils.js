@@ -46,13 +46,19 @@ element.style.display = 'none'
 
 function showUserContent(user){
   console.log(user)
-  if(user.emailVerified) {
+  if(user.providerData[0].provderId != 'password'){
+   emailVerified.innerHTML = 'Autenticação por provedor confiável. Não é necessário verificar e-mail'
+   hideItem(sendEmailVerificationDiv)
+  } else {
+     if(user.emailVerified) {
     emailVerified.innerHTML = 'E-mail Verificado'
    hideItem(sendEmailVerificationDiv)
   } else {
     emailVerified.innerHTML = 'E-mail Não Verificado'
     showItem(sendEmailVerificationDiv)
   }
+  }
+ 
 
   userImg.src = user.photoURL ? user.photoURL : 'img/unknownUser.png'
   userName.innerHTML = user.displayName ? user.displayName : ''

@@ -59,6 +59,14 @@
             src="./img/google.png"
             alt="Google Login"
           />
+         <img onclick="signInWithGitHub()"
+            src="./img/github.png"
+            alt="GitHub Login"
+          />
+          <img onclick="signInWithFacebook()"
+            src="./img/facebook.png"
+            alt="GitHub Login"
+          />
         </p>
       </div>
       <!-- Destinado para usuários autenticados -->
@@ -74,7 +82,9 @@
               Verificar Email
             </button>
           </div>
+          <button class="alternative" onclick="updateUserName()">Atualizar Nome</button>
           <button class="alternative" onclick="signOut()">Sair</button>
+          <button class="danger" onclick="deleteUserAccount()">Excluir Conta</button>
         </div>
       </div>
     </div>

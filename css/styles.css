@@ -60,6 +60,10 @@ p {
   background-color: #bb9586;
 }
 
+.danger {
+  background-color: #fd7b72;
+}
+
 #loading {
   position: absolute;
   top: calc(50% - 100px);
@@ -72,7 +76,12 @@ p {
   margin: 4px;
 }
 
+#auth img:hover {
+  opacity: 0.75;
+}
+
 #userImg {
   height: 40px;
   border-radius: 100%;
 }
+

@@ -86,3 +86,57 @@ function signInWithGoogle() {
   })
 }
 
+/*Login com o GitHub*/
+function signInWithGitHub() {
+  showItem(loading)
+  firebase.auth().signInWithPopup(new firebase.auth.GithubAuthProvider()).catch(function (error) {
+    alert('Houve um erro ao autenticar usando o GitHub')
+    console.log(error)
+    hideItem(loading)
+  })
+}
+
+/*Login com o Facebook*/
+function signInWithFacebook() {
+  showItem(loading)
+  firebase.auth().signInWithPopup(new firebase.auth.FacebookAuthProvider()).catch(function (error) {
+    alert('Houve um erro ao autenticar usando o Facebook')
+    console.log(error)
+    hideItem(loading)
+  })
+}
+
+/*Atualiza nome de usuário */
+function updateUserName() {
+  let newUserName = prompt('Informe um novo nome de usuário.', userName.innerHTML)
+  if (newUserName && newUserName != '') {
+    userName.innerHTML = newUserName
+    showItem(loading)
+    firebase.auth().currentUser.updateProfile({
+      displayName: newUserName
+    }).catch(function (error) {
+      alert('Houve um erro ao atualizar o nome de usuário')
+      console.log(error)
+    }).finally(function () {
+      hideItem(loading)
+    })
+  } else {
+    alert('O nome de usuário não pode ser vazio')
+  }
+}
+
+/*Remover conta do usuário */
+function deleteUserAccount(){
+let confirmation = confirm('Realmente deseja excluir a sua conta?')
+  if (confirmation) {
+    showItem(loading)
+    firebase.auth().currentUser.delete().then(function () {
+      alert('Conta removida com sucesso')
+    }).catch(function (error) {
+      alert('Houve um erro ao remover a sua conta')
+      console.log(error)
+    }).finally(function () {
+      hideItem(loading)
+    })
+  }
+}
