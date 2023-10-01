@@ -1,3 +1,4 @@
+
 /*Controles do App*/
 let authForm = document.getElementById('authForm');
 let authFormTitle = document.getElementById('authFormTitle');
@@ -17,6 +18,8 @@ let passwordReset = document.getElementById('passwordReset')
 
 let userName = document.getElementById('userName')
 let userImg = document.getElementById('userImg')
+
+let todoForm = document.getElementById('todoForm')
 
 /*Alterar Tela de Cadastro*/
 function toggleToRegister(){
@@ -77,6 +80,29 @@ function showAuth(){
   showItem(auth)
 }
 
-let actionCodeSettings = {
-  url: 'http://127.0.0.1:5500/'
+/*Centralizar e Traduzir Erros do Firebase */
+function showError(prefix, error){
+  console.log(error.code)
+  hideItem(loading)
+  switch (error.code) {
+    case 'auth/invalid-email':
+    case 'auth/wrong-password':
+    case 'auth/internal-error': alert(prefix + ' ' + 'Email ou Senha inválida')
+      break;
+    case 'auth/weak-password':alert(prefix + ' ' + 'Senha deve conter ao menos 6 caracteres')
+      break;
+    case 'auth/email-already-in-use':alert(prefix + ' ' + 'Email já cadastrado')
+      break;
+    case 'auth/popup-closed-by-user':alert(prefix + ' ' + 'Janela de autenticação foi fechada antes do tempo')
+      break;     
+
+    default: alert(prefix + '' + error.message)
+  }
 }
+
+let actionCodeSettings = {
+  url: 'https://to-do-list-mat.firebaseapp.com'
+}
+
+let database = firebase.database()
+let dbRefUsers = database.ref('users')
