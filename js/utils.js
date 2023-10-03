@@ -20,6 +20,8 @@ let userName = document.getElementById('userName')
 let userImg = document.getElementById('userImg')
 
 let todoForm = document.getElementById('todoForm')
+let todoCount = document.getElementById('todoCount')
+let ulTodoList = document.getElementById('ulTodoList')
 
 /*Alterar Tela de Cadastro*/
 function toggleToRegister(){
@@ -68,6 +70,10 @@ function showUserContent(user){
 
   userEmail.innerHTML = user.email
   hideItem(auth)
+
+  dbRefUsers.child(firebase.auth().currentUser.uid).on('value', function(dataSnapshot){
+    fillTodoList(dataSnapshot)
+  })
   showItem(userContent)
 }
 
